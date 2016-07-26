@@ -20,7 +20,7 @@ package com.slick.cleaner.model;
  * Defines single resource that may be found in an Android
  * project.
  */
-public class Resource {
+public abstract class Resource {
 
 	/**
 	 * Key for given resource
@@ -37,4 +37,6 @@ public class Resource {
 	protected void setResourceKey(String resourceKey) {
 		mResourceKey = resourceKey;
 	}
+	
+	protected abstract String getResourceAccessClass();
 }
