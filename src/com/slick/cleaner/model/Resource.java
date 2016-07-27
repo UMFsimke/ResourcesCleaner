@@ -61,6 +61,10 @@ public abstract class Resource {
 		mKey = resourceKey;
 	}
 	
+	/**
+	 * Returns resource key
+	 * @return Resource key
+	 */
 	protected String getResourceKey() {
 		return mKey;
 	}
@@ -73,6 +77,10 @@ public abstract class Resource {
 		mType = type;
 	}
 	
+	/**
+	 * Returns resource type
+	 * @return Resource type
+	 */
 	protected Type getResourceType() {
 		return mType;
 	}
@@ -83,6 +91,11 @@ public abstract class Resource {
 	 */
 	protected abstract String getResourceAccessClass();
 	
+	/**
+	 * Compares with given resources 
+	 * @param resource Resource to compare to
+	 * @return <b>true</b> if resource name and type are same, <b>false</b> otherwise
+	 */
 	public boolean compare(Resource resource) {
 		if (resource.getResourceKey() == null) return false;
 		
