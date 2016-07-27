@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.slick.cleaner.model;
+package com.slick.cleaner.model.resources;
 
 import java.io.File;
 

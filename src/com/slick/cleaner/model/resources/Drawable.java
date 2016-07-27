@@ -14,33 +14,33 @@
  * limitations under the License.
  */
 
-package com.slick.cleaner.model;
+package com.slick.cleaner.model.resources;
 
 import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
 
 /**
- * Defines layout resource
+ * Defines drawable resource
  */
-public class Layout extends Resource {
+public class Drawable extends Resource {
 
-	private static final String LAYOUT_ACCESS_CLASS_NAME = "layout";
+	private static final String DRAWABLE_ACCESS_CLASS_NAME = "drawable";
 	
 	/**
-	 * Creates new instance of {@link Layout} resource from given file
+	 * Creates new instance of {@link Drawable} resource from given file
 	 * @param file {@link File} of resource
-	 * @return {@link Layout} generated from file
+	 * @return {@link Drawable} generated from file
 	 */
-	public static Layout newInstance(File file) {
-		Layout layout = new Layout();
-		layout.setResourceType(Type.LAYOUT);
+	public static Drawable newInstance(File file) {
+		Drawable drawable = new Drawable();
+		drawable.setResourceType(Type.DRAWABLE);
 		String fileName = FilenameUtils.getBaseName(file.getAbsolutePath());
-		layout.setResourceKey(fileName);
-		return layout;
+		drawable.setResourceKey(fileName);
+		return drawable;
 	}
 	
-	protected Layout() {
+	protected Drawable() {
 		super();
 	}
 	
@@ -49,21 +49,21 @@ public class Layout extends Resource {
 	 */
 	@Override
 	protected String getResourceAccessClass() {
-		return LAYOUT_ACCESS_CLASS_NAME;
+		return DRAWABLE_ACCESS_CLASS_NAME;
 	}
 	
 	/**
-	 * Checks if file is layout
+	 * Checks if file is drawable
 	 * @param file File to check
-	 * @return <b>true</b> if file is layout, <b>false</b> otherwise
+	 * @return <b>true</b> if file is drawable, <b>false</b> otherwise
 	 */
-	public static boolean isLayout(File file) {
+	public static boolean isDrawable(File file) {
 		File parentDirectory = file.getParentFile();
 		if (parentDirectory == null) return false;
 		
 		String parentDirectoryName = FilenameUtils.getBaseName(parentDirectory.getAbsolutePath());
 		if (parentDirectoryName == null) return false;
 		
-		return parentDirectoryName.startsWith(LAYOUT_ACCESS_CLASS_NAME);
+		return parentDirectoryName.startsWith(DRAWABLE_ACCESS_CLASS_NAME);
 	}
 }

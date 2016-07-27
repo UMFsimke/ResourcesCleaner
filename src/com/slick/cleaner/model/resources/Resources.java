@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.slick.cleaner.model;
+package com.slick.cleaner.model.resources;
 
 import java.io.File;
 import java.security.InvalidParameterException;
@@ -50,6 +50,14 @@ public class Resources {
 	
 	protected Resources() {
 		mResources = new ArrayList<>();
+	}
+	
+	/**
+	 * Returns list of {@link Resource} in project
+	 * @return List of resources in project
+	 */
+	public List<Resource> getResources() {
+		return mResources;
 	}
 	
 	/**
