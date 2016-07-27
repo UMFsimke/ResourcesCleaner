@@ -16,16 +16,28 @@
 
 package com.slick.cleaner.model;
 
+import java.io.File;
+
 /**
  * Defines single resource that may be found in an Android
  * project.
  */
 public abstract class Resource {
 
+	public enum Type {
+		DRAWABLE,
+		UNKNOWN
+	}
+	
 	/**
 	 * Key for given resource
 	 */
-	protected String mResourceKey;
+	protected String mKey;
+	
+	/**
+	 * Resource type
+	 */
+	protected Type mType;
 	
 	public Resource() {
 	}
@@ -35,8 +47,33 @@ public abstract class Resource {
 	 * @param resourceKey Resource key
 	 */
 	protected void setResourceKey(String resourceKey) {
-		mResourceKey = resourceKey;
+		mKey = resourceKey;
 	}
 	
+	/**
+	 * Sets the resource type
+	 * @param type Resource {@link Type}
+	 */
+	protected void setResourceType(Type type) {
+		mType = type;
+	}
+	
+	/**
+	 * Returns resource access class
+	 * @return Access class of a resource
+	 */
 	protected abstract String getResourceAccessClass();
+	
+	/**
+	 * Finds resource {@link Type} to which file belongs  
+	 * @param file File to check
+	 * @return {@link Type} where resource belongs
+	 */
+	public static Type getResourceType(File file) {
+		if (Drawable.isDrawable(file)) {
+			return Type.DRAWABLE;
+		}
+		
+		return Type.UNKNOWN;
+	}
 }
