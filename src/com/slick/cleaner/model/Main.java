@@ -1,0 +1,15 @@
+package com.slick.cleaner.model;
+
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String projectPath = "C:/Projects/Udacity/PopMovies/PopMovies/app/src/main";
+		List<Resource> resources = Resources.loadResources(projectPath);
+		for (Resource resource : resources) {
+			System.out.println("Resource : " + resource.mKey);
+		}
+	}
+
+}
