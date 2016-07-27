@@ -20,10 +20,18 @@ import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
 
+/**
+ * Defines drawable resource
+ */
 public class Drawable extends Resource {
 
 	private static final String DRAWABLE_ACCESS_CLASS_NAME = "drawable";
 	
+	/**
+	 * Creates new instance of {@link Drawable} resource from given file
+	 * @param file {@link File} of resource
+	 * @return {@link Drawable} generated from file
+	 */
 	public static Drawable newInstance(File file) {
 		Drawable drawable = new Drawable();
 		drawable.setResourceType(Type.DRAWABLE);
@@ -36,11 +44,19 @@ public class Drawable extends Resource {
 		super();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected String getResourceAccessClass() {
 		return DRAWABLE_ACCESS_CLASS_NAME;
 	}
 	
+	/**
+	 * Checks if file is drawable
+	 * @param file File to check
+	 * @return <b>true</b> if file is drawable, <b>false</b> otherwise
+	 */
 	public static boolean isDrawable(File file) {
 		File parentDirectory = file.getParentFile();
 		if (parentDirectory == null) return false;

@@ -24,8 +24,19 @@ import java.io.File;
  */
 public abstract class Resource {
 
+	/**
+	 * List of resource types that may be occured in
+	 * Android project
+	 */
 	public enum Type {
+		/**
+		 * Denotes drawable resource
+		 */
 		DRAWABLE,
+		
+		/**
+		 * Denotes if resource is not supported in project version
+		 */
 		UNKNOWN
 	}
 	
