@@ -159,6 +159,9 @@ public class Resources {
 		case DRAWABLE:
 			resource = Drawable.newInstance(file);
 			break;
+		case LAYOUT:
+			resource = Layout.newInstance(file);
+			break;
 		case UNKNOWN:
 			break;
 		}

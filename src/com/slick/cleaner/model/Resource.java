@@ -25,7 +25,7 @@ import java.io.File;
 public abstract class Resource {
 
 	/**
-	 * List of resource types that may be occured in
+	 * List of resource types that may be occurred in
 	 * Android project
 	 */
 	public enum Type {
@@ -33,6 +33,11 @@ public abstract class Resource {
 		 * Denotes drawable resource
 		 */
 		DRAWABLE,
+		
+		/**
+		 * Denotes layout resource
+		 */
+		LAYOUT,
 		
 		/**
 		 * Denotes if resource is not supported in project version
@@ -111,6 +116,10 @@ public abstract class Resource {
 	public static Type getResourceType(File file) {
 		if (Drawable.isDrawable(file)) {
 			return Type.DRAWABLE;
+		}
+		
+		if (Layout.isLayout(file)) {
+			return Type.LAYOUT;
 		}
 		
 		return Type.UNKNOWN;
