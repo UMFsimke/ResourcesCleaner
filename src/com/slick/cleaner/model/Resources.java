@@ -38,14 +38,27 @@ public class Resources {
 	};
 	
 	/**
+	 * List of all resources
+	 */
+	protected List<Resource> mResources;
+	
+	public static Resources newInstance(String projectPath) {
+		Resources resources = new Resources();
+		resources.loadResources(projectPath);
+		return resources;
+	}
+	
+	protected Resources() {
+		mResources = new ArrayList<>();
+	}
+	
+	/**
 	 * Loads all resources in a project
 	 * @param projectPath Path to the <b>root</b> of the project
-	 * @return List of {@link Resource} models
 	 */
-	public static List<Resource> loadResources(String projectPath) {
+	protected void loadResources(String projectPath) {
 		File resourcesDirectory = getResourcesDirectory(projectPath);
-		List<Resource> resources = getAllResourceReferences(resourcesDirectory);
-		return resources;
+		getAllResourceReferences(resourcesDirectory);
 	}
 	
 	/**
@@ -53,7 +66,7 @@ public class Resources {
 	 * @param projectPath Path to the <b>root</b> of the project
 	 * @return Resources directory file
 	 */
-	protected static File getResourcesDirectory(String projectPath) {
+	protected File getResourcesDirectory(String projectPath) {
 		File projectDirectory = new File(projectPath);
 		validateProjectDirectory(projectDirectory);
 		return getResourcesDirectoryRecursively(projectDirectory);
@@ -63,7 +76,7 @@ public class Resources {
 	 * Validates a project directory 
 	 * @param projectDirectory Root directory of project
 	 */
-	protected static void validateProjectDirectory(File projectDirectory) {
+	protected void validateProjectDirectory(File projectDirectory) {
 		if (!projectDirectory.exists()) {
 			throw new InvalidParameterException("Given path is not pointing to existing project location");
 		}
@@ -78,7 +91,7 @@ public class Resources {
 	 * @param projectDirectory Project directory
 	 * @return Resources directory file
 	 */
-	protected static File getResourcesDirectoryRecursively(File projectDirectory) {
+	protected File getResourcesDirectoryRecursively(File projectDirectory) {
 		for (File file : projectDirectory.listFiles()) {
 			if (isResourcesDirectory(file)) {
 				return file;
@@ -94,39 +107,30 @@ public class Resources {
 	 * @return <b>true</b> if given file is resources directory, 
 	 * <b>false</b> otherwise
 	 */
-	protected static boolean isResourcesDirectory(File file) {
+	protected boolean isResourcesDirectory(File file) {
 		return file.isDirectory() && RESOURCES_FOLDER_NAME.equals(
 				FilenameUtils.getBaseName(file.getAbsolutePath()));
 	}
 	
 	/**
-	 * Returns list of all resource files in a resource directory
+	 * Finds all resource references
 	 * @param resourcesDirectory Resource directory
-	 * @return List of {@link Resource} models
 	 */
-	protected static List<Resource> getAllResourceReferences(File resourcesDirectory) {
-		List<Resource> resources = new ArrayList<>();
+	protected void getAllResourceReferences(File resourcesDirectory) {
 		for (File file : resourcesDirectory.listFiles()) {
 			if (file.isDirectory()) {
 				if (!shouldIgnoreDirectory(file)) {
-					List<Resource> subResources = getAllResourceReferences(file);
-					for (Resource resource : subResources) {
-						if (!isResourceAdded(resources, resource)) {
-							resources.add(resource);
-						}
-					}
+					getAllResourceReferences(file);
 				}
 				
 				continue;
 			}
 			
 			Resource resource = Resource.newInstance(file);
-			if (resource != null && !isResourceAdded(resources, resource)) {
-				resources.add(resource);
+			if (resource != null && !isResourceAdded(resource)) {
+				mResources.add(resource);
 			}
 		}
-		
-		return resources;
 	}
 	
 	/**
@@ -136,7 +140,7 @@ public class Resources {
 	 * @param directory Directory to check
 	 * @return <b>true</b> if directory should be ignored, <b>false</b> otherwise
 	 */
-	protected static boolean shouldIgnoreDirectory(File directory) {
+	protected boolean shouldIgnoreDirectory(File directory) {
 		String directoryName = FilenameUtils.getBaseName(directory.getAbsolutePath());
 		for (String ignoredDirectoryName : IGNORED_DIRECTORIES_NAMES) {
 			if (ignoredDirectoryName.equals(directoryName)) {
@@ -149,14 +153,13 @@ public class Resources {
 	
 	/**
 	 * Checks if resource is already added in resources list
-	 * @param resources List of {@link Resource}
 	 * @param resource {@link Resource} to check
 	 * @return <b>true</b> if resource is already added, <b>false</b> otherwise
 	 */
-	protected static boolean isResourceAdded(List<Resource> resources, Resource resource) {
-		if (resources == null) return false;
+	protected boolean isResourceAdded(Resource resource) {
+		if (mResources == null) return false;
 		
-		for (Resource existingResource : resources) {
+		for (Resource existingResource : mResources) {
 			if (existingResource.compare(resource)) {
 				return true;
 			}
