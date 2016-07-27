@@ -40,6 +40,11 @@ public abstract class Resource {
 		LAYOUT,
 		
 		/**
+		 * Denotes menu resource
+		 */
+		MENU,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
 		UNKNOWN
@@ -69,7 +74,10 @@ public abstract class Resource {
 		case LAYOUT:
 			resource = Layout.newInstance(file);
 			break;
-		case UNKNOWN:
+		case MENU:
+			resource = Menu.newInstance(file);
+			break;
+		default:
 			break;
 		}
 		
@@ -141,6 +149,10 @@ public abstract class Resource {
 		
 		if (Layout.isLayout(file)) {
 			return Type.LAYOUT;
+		}
+		
+		if (Menu.isMenu(file)) {
+			return Type.MENU;
 		}
 		
 		return Type.UNKNOWN;
