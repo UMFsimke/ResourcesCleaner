@@ -120,7 +120,7 @@ public class Resources {
 				continue;
 			}
 			
-			Resource resource = getResourceFromFile(file);
+			Resource resource = Resource.newInstance(file);
 			if (resource != null && !isResourceAdded(resources, resource)) {
 				resources.add(resource);
 			}
@@ -145,28 +145,6 @@ public class Resources {
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Generates {@link Resource} from given file
-	 * @param file Resource file
-	 * @return returns {@link Resource} object, or <b>null</b> if
-	 * resource type is unknown
-	 */
-	protected static Resource getResourceFromFile(File file) {
-		Resource resource = null;
-		switch(Resource.getResourceType(file)) {
-		case DRAWABLE:
-			resource = Drawable.newInstance(file);
-			break;
-		case LAYOUT:
-			resource = Layout.newInstance(file);
-			break;
-		case UNKNOWN:
-			break;
-		}
-		
-		return resource;
 	}
 	
 	/**

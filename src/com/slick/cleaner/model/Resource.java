@@ -55,7 +55,28 @@ public abstract class Resource {
 	 */
 	protected Type mType;
 	
-	public Resource() {
+	/**
+	 * Creates new instance of resource
+	 * @param file File from resources
+	 * @return Resource object
+	 */
+	public static Resource newInstance(File file) {
+		Resource resource = null;
+		switch(getResourceType(file)) {
+		case DRAWABLE:
+			resource = Drawable.newInstance(file);
+			break;
+		case LAYOUT:
+			resource = Layout.newInstance(file);
+			break;
+		case UNKNOWN:
+			break;
+		}
+		
+		return resource;
+	}
+	
+	protected Resource() {
 	}
 	
 	/**
