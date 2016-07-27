@@ -61,6 +61,10 @@ public abstract class Resource {
 		mKey = resourceKey;
 	}
 	
+	protected String getResourceKey() {
+		return mKey;
+	}
+	
 	/**
 	 * Sets the resource type
 	 * @param type Resource {@link Type}
@@ -69,11 +73,22 @@ public abstract class Resource {
 		mType = type;
 	}
 	
+	protected Type getResourceType() {
+		return mType;
+	}
+	
 	/**
 	 * Returns resource access class
 	 * @return Access class of a resource
 	 */
 	protected abstract String getResourceAccessClass();
+	
+	public boolean compare(Resource resource) {
+		if (resource.getResourceKey() == null) return false;
+		
+		return resource.getResourceType() == mType &&
+				resource.getResourceKey().equals(mKey);
+	}
 	
 	/**
 	 * Finds resource {@link Type} to which file belongs  

@@ -109,14 +109,19 @@ public class Resources {
 		for (File file : resourcesDirectory.listFiles()) {
 			if (file.isDirectory()) {
 				if (!shouldIgnoreDirectory(file)) {
-					resources.addAll(getAllResourceReferences(file));
+					List<Resource> subResources = getAllResourceReferences(file);
+					for (Resource resource : subResources) {
+						if (!isResourceAdded(resources, resource)) {
+							resources.add(resource);
+						}
+					}
 				}
 				
 				continue;
 			}
 			
 			Resource resource = getResourceFromFile(file);
-			if (resource != null) {
+			if (resource != null && !isResourceAdded(resources, resource)) {
 				resources.add(resource);
 			}
 		}
@@ -159,5 +164,17 @@ public class Resources {
 		}
 		
 		return resource;
+	}
+	
+	protected static boolean isResourceAdded(List<Resource> resources, Resource resource) {
+		if (resources == null) return false;
+		
+		for (Resource existingResource : resources) {
+			if (existingResource.compare(resource)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
