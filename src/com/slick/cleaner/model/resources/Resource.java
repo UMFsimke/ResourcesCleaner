@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.slick.cleaner.model;
+package com.slick.cleaner.model.resources;
 
 import java.io.File;
 
@@ -25,7 +25,7 @@ import java.io.File;
 public abstract class Resource {
 
 	/**
-	 * List of resource types that may be occured in
+	 * List of resource types that may be occurred in
 	 * Android project
 	 */
 	public enum Type {
@@ -33,6 +33,11 @@ public abstract class Resource {
 		 * Denotes drawable resource
 		 */
 		DRAWABLE,
+		
+		/**
+		 * Denotes layout resource
+		 */
+		LAYOUT,
 		
 		/**
 		 * Denotes if resource is not supported in project version
@@ -50,7 +55,28 @@ public abstract class Resource {
 	 */
 	protected Type mType;
 	
-	public Resource() {
+	/**
+	 * Creates new instance of resource
+	 * @param file File from resources
+	 * @return Resource object
+	 */
+	public static Resource newInstance(File file) {
+		Resource resource = null;
+		switch(getResourceType(file)) {
+		case DRAWABLE:
+			resource = Drawable.newInstance(file);
+			break;
+		case LAYOUT:
+			resource = Layout.newInstance(file);
+			break;
+		case UNKNOWN:
+			break;
+		}
+		
+		return resource;
+	}
+	
+	protected Resource() {
 	}
 	
 	/**
@@ -111,6 +137,10 @@ public abstract class Resource {
 	public static Type getResourceType(File file) {
 		if (Drawable.isDrawable(file)) {
 			return Type.DRAWABLE;
+		}
+		
+		if (Layout.isLayout(file)) {
+			return Type.LAYOUT;
 		}
 		
 		return Type.UNKNOWN;
