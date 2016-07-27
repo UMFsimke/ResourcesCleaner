@@ -45,6 +45,11 @@ public abstract class Resource {
 		MENU,
 		
 		/**
+		 * Denotes animation resource
+		 */
+		ANIMATION,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
 		UNKNOWN
@@ -76,6 +81,9 @@ public abstract class Resource {
 			break;
 		case MENU:
 			resource = Menu.newInstance(file);
+			break;
+		case ANIMATION:
+			resource = Animation.newInstance(file);
 			break;
 		default:
 			break;
@@ -153,6 +161,10 @@ public abstract class Resource {
 		
 		if (Menu.isMenu(file)) {
 			return Type.MENU;
+		}
+		
+		if (Animation.isAnimation(file)) {
+			return Type.ANIMATION;
 		}
 		
 		return Type.UNKNOWN;
