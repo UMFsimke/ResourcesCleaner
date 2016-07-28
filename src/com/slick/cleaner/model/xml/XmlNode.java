@@ -24,8 +24,17 @@ import org.w3c.dom.Node;
  */
 public class XmlNode {
 
+	/**
+	 * Node name
+	 */
 	protected String mNodeName;
 
+	/**
+	 * Creates new instance of required XML node based on
+	 * provided node
+	 * @param xmlNode XML node
+	 * @return XmlNode object
+	 */
 	public static XmlNode newInstance(Node xmlNode) {
 		switch(xmlNode.getNodeName()) {
 		case "string":
@@ -41,10 +50,18 @@ public class XmlNode {
 	public XmlNode() {
 	}
 	
+	/**
+	 * Returns node name
+	 * @return Node name
+	 */
 	public String getNodeName() {
 		return mNodeName;
 	}
 	
+	/**
+	 * Sets node name
+	 * @param nodeName Node name
+	 */
 	public void setNodeName(String nodeName) {
 		mNodeName = nodeName;
 	}

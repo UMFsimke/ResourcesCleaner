@@ -31,6 +31,9 @@ import org.xml.sax.SAXException;
  */
 public class XmlFile {
 
+	/**
+	 * Document
+	 */
 	protected Document mDoc;
 
 	/**

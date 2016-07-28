@@ -16,18 +16,32 @@
 
 package com.slick.cleaner.model.xml;
 
+/**
+ * Defines single resource XML node
+ */
 public class ResourceXmlNode extends XmlNode {
 
+	/**
+	 * Resource identifier key
+	 */
 	protected String mResourceKey;
 	
 	public ResourceXmlNode() {
 	}
 	
+	/**
+	 * Returns resource identifier key
+	 * @return Resource identifier key
+	 */
 	public String getResourceKey() {
 		return mResourceKey;
 	}
 	
-	public void setResourceKey(String resourceName) {
-		mResourceKey = resourceName;
+	/**
+	 * Sets resource identifier key
+	 * @param resourceName Resource identifier key
+	 */
+	public void setResourceKey(String resourceKey) {
+		mResourceKey = resourceKey;
 	}
 }

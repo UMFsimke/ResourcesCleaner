@@ -34,6 +34,9 @@ public class ResourceXmlFile extends XmlFile {
 
 	private static final String INLINE_RESOURCE_ROOT_NODE = "resources";
 	
+	/**
+	 * Nodes in resource XML
+	 */
 	protected List<XmlNode> mNodes;
 	
 	/**
@@ -60,10 +63,17 @@ public class ResourceXmlFile extends XmlFile {
 		mNodes = new ArrayList<>();
 	}
 	
+	/**
+	 * Checks if given XML is resource or not
+	 * @return <b>true</b> if XML has resources, <b>false</b> otherwise
+	 */
 	public boolean isResourceXml() {
 		return getRootNodeName().equals(INLINE_RESOURCE_ROOT_NODE);
 	}
 	
+	/**
+	 * Reads XML nodes and creates a list of {@link XmlNode}
+	 */
 	protected void readNodes() {
 		NodeList nodes = mDoc.getDocumentElement().getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
@@ -74,6 +84,10 @@ public class ResourceXmlFile extends XmlFile {
 		}
 	}
 	
+	/**
+	 * Returns list of nodes
+	 * @return List of nodes
+	 */
 	public List<XmlNode> getNodes() {
 		return mNodes;
 	}
