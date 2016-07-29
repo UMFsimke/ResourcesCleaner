@@ -20,8 +20,6 @@ import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
 
-import com.slick.cleaner.model.resources.Resource.Type;
-
 /**
  * Defines animation resource
  */
