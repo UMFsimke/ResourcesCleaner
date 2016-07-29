@@ -60,6 +60,11 @@ public abstract class Resource {
 		COLOR,
 		
 		/**
+		 * Denotes style resource
+		 */
+		STYLE,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
 		UNKNOWN;
@@ -73,6 +78,9 @@ public abstract class Resource {
 				break;
 			case "color":
 				type = COLOR;
+				break;
+			case "style":
+				type = STYLE;
 				break;
 			default:
 				type = UNKNOWN;
