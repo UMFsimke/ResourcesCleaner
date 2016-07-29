@@ -125,20 +125,36 @@ public class Resources {
 	 * @param resourcesDirectory Resource directory
 	 */
 	protected void getAllResourceReferences(File resourcesDirectory) {
+		//TODO: simplify method
 		for (File file : resourcesDirectory.listFiles()) {
 			if (file.isDirectory()) {
-				if (!shouldIgnoreDirectory(file)) {
-					getAllResourceReferences(file);
+				if (shouldIgnoreDirectory(file)) continue;
+				
+				getAllResourceReferences(file);
+			}
+			
+			if (InlineResource.isInlineResource(file)) {
+				List<Resource> resources = InlineResource.loadPrimitivesFromFile(file);
+				for (Resource resource : resources) {
+					addResource(resource);
 				}
 				
 				continue;
 			}
 			
-			Resource resource = Resource.newInstance(file);
-			if (resource != null && !isResourceAdded(resource)) {
-				mResources.add(resource);
-			}
+			addResource(Resource.newInstance(file));
 		}
+	}
+	
+	/**
+	 * Adds resource to the list of resources if it hasn't been added
+	 * and if it is valid one
+	 * @param resource Resource to add
+	 */
+	protected void addResource(Resource resource) {
+		if (resource == null || isResourceAdded(resource)) return;
+		
+		mResources.add(resource);
 	}
 	
 	/**
