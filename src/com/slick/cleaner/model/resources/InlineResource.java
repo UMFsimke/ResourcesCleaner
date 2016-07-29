@@ -59,14 +59,22 @@ public abstract class InlineResource extends Resource {
 		for (XmlNode node : nodes) {
 			if (!(node instanceof ResourceXmlNode)) continue;
 			
+			Resource resource;
 			switch(Type.fromString(node.getNodeName())) {
 			case STRING:
-				StringResource resource = StringResource.newInstance((ResourceXmlNode) node);
-				resources.add(resource);
+				resource = StringResource.newInstance((ResourceXmlNode) node);
+				break;
+			case COLOR:
+				resource = ColorResource.newInstance((ResourceXmlNode) node);
 				break;
 			default:
+				resource = null;
 				break;
 			}
+			
+			if (resource == null) continue;
+			
+			resources.add(resource);
 		}
 		
 		return resources;

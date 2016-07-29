@@ -16,33 +16,34 @@
 
 package com.slick.cleaner.model.resources;
 
+import com.slick.cleaner.model.resources.Resource.Type;
 import com.slick.cleaner.model.xml.ResourceXmlNode;
 
 /**
- * Defines string resource
+ * Defines color resource
  */
-public class StringResource extends InlineResource {
+public class ColorResource extends InlineResource {
 
-	private static final String STRING_ACCESS_CLASS_NAME = "string";
+	private static final String COLOR_ACCESS_CLASS_NAME = "color";
 	
 	/**
-	 * Creates new instance of {@link StringResource} resource from given node
+	 * Creates new instance of {@link ColorResource} resource from given node
 	 * @param node {@link ResourceXmlNode} of resource
-	 * @return {@link StringResource} generated from node
+	 * @return {@link ColorResource} generated from node
 	 */
-	public static StringResource newInstance(ResourceXmlNode node) {
-		StringResource stringResource = new StringResource();
-		stringResource.setResourceType(Type.STRING);
-		stringResource.setResourceKey(node.getResourceKey());
-		return stringResource;
+	public static ColorResource newInstance(ResourceXmlNode node) {
+		ColorResource colorResource = new ColorResource();
+		colorResource.setResourceType(Type.COLOR);
+		colorResource.setResourceKey(node.getResourceKey());
+		return colorResource;
 	}
 	
-	protected StringResource() {
+	protected ColorResource() {
 		super();
 	}
 	
 	@Override
 	protected String getResourceAccessClass() {
-		return STRING_ACCESS_CLASS_NAME;
+		return COLOR_ACCESS_CLASS_NAME;
 	}	
 }
