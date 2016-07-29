@@ -19,30 +19,30 @@ package com.slick.cleaner.model.resources;
 import com.slick.cleaner.model.xml.ResourceXmlNode;
 
 /**
- * Defines color resource
+ * Defines dimension resource
  */
-public class ColorResource extends InlineResource {
+public class DimensionResource extends InlineResource {
 
-	private static final String COLOR_ACCESS_CLASS_NAME = "color";
+	private static final String DIMEN_ACCESS_CLASS_NAME = "dimen";
 	
 	/**
-	 * Creates new instance of {@link ColorResource} resource from given node
+	 * Creates new instance of {@link DimensionResource} resource from given node
 	 * @param node {@link ResourceXmlNode} of resource
-	 * @return {@link ColorResource} generated from node
+	 * @return {@link DimensionResource} generated from node
 	 */
-	public static ColorResource newInstance(ResourceXmlNode node) {
-		ColorResource colorResource = new ColorResource();
-		colorResource.setResourceType(Type.COLOR);
-		colorResource.setResourceKey(node.getResourceKey());
-		return colorResource;
+	public static DimensionResource newInstance(ResourceXmlNode node) {
+		DimensionResource dimenResource = new DimensionResource();
+		dimenResource.setResourceType(Type.DIMEN);
+		dimenResource.setResourceKey(node.getResourceKey());
+		return dimenResource;
 	}
 	
-	protected ColorResource() {
+	protected DimensionResource() {
 		super();
 	}
 	
 	@Override
 	protected String getResourceAccessClass() {
-		return COLOR_ACCESS_CLASS_NAME;
+		return DIMEN_ACCESS_CLASS_NAME;
 	}	
 }

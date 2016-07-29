@@ -65,6 +65,11 @@ public abstract class Resource {
 		STYLE,
 		
 		/**
+		 * Denotes dimension resource
+		 */
+		DIMEN,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
 		UNKNOWN;
@@ -81,6 +86,9 @@ public abstract class Resource {
 				break;
 			case "style":
 				type = STYLE;
+				break;
+			case "dimen":
+				type = DIMEN;
 				break;
 			default:
 				type = UNKNOWN;

@@ -16,7 +16,6 @@
 
 package com.slick.cleaner.model.resources;
 
-import com.slick.cleaner.model.resources.Resource.Type;
 import com.slick.cleaner.model.xml.ResourceXmlNode;
 
 /**
@@ -29,7 +28,7 @@ public class StyleResource extends InlineResource {
 	/**
 	 * Creates new instance of {@link StyleResource} resource from given node
 	 * @param node {@link ResourceXmlNode} of resource
-	 * @return {@link StyleResource} generated from node
+	 * @return {@link StyleResource} generated from nodeó
 	 */
 	public static StyleResource newInstance(ResourceXmlNode node) {
 		StyleResource styleResource = new StyleResource();
