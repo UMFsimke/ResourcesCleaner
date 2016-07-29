@@ -13,6 +13,8 @@ public class Main {
 		for (Resource resource : resources.getResources()) {
 			System.out.println("Resource: " + resource.getResourceKey());
 		}
+		
+		System.out.println("Resources: " + resources.getResources().size());
 	}
 
 }

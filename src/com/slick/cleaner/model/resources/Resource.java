@@ -55,15 +55,24 @@ public abstract class Resource {
 		STRING,
 		
 		/**
+		 * Denotes color resource
+		 */
+		COLOR,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
 		UNKNOWN;
 		
 		public static Type fromString(String resourceKey) {
+			//TODO: update this to use more abstract way of parsing
 			Type type;
 			switch(resourceKey) {
 			case "string":
 				type = STRING;
+				break;
+			case "color":
+				type = COLOR;
 				break;
 			default:
 				type = UNKNOWN;

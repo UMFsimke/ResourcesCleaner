@@ -37,6 +37,7 @@ public class XmlNode {
 	 */
 	public static XmlNode newInstance(Node xmlNode) {
 		switch(xmlNode.getNodeName()) {
+		case "color":
 		case "string":
 			ResourceXmlNode node = new ResourceXmlNode();
 			node.setResourceKey(((Element) xmlNode).getAttribute("name"));
