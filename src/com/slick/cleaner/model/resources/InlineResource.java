@@ -67,6 +67,9 @@ public abstract class InlineResource extends Resource {
 			case COLOR:
 				resource = ColorResource.newInstance((ResourceXmlNode) node);
 				break;
+			case STYLE:
+				resource = StyleResource.newInstance((ResourceXmlNode) node);
+				break;
 			default:
 				resource = null;
 				break;
