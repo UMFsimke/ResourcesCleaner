@@ -50,9 +50,27 @@ public abstract class Resource {
 		ANIMATION,
 		
 		/**
+		 * Denotes string resource
+		 */
+		STRING,
+		
+		/**
 		 * Denotes if resource is not supported in project version
 		 */
-		UNKNOWN
+		UNKNOWN;
+		
+		public static Type fromString(String resourceKey) {
+			Type type;
+			switch(resourceKey) {
+			case "string":
+				type = STRING;
+				break;
+			default:
+				type = UNKNOWN;
+			}
+			
+			return type;
+		}
 	}
 	
 	/**
@@ -84,7 +102,7 @@ public abstract class Resource {
 			break;
 		case ANIMATION:
 			resource = Animation.newInstance(file);
-			break;
+			break;			
 		default:
 			break;
 		}
@@ -107,7 +125,7 @@ public abstract class Resource {
 	 * Returns resource key
 	 * @return Resource key
 	 */
-	protected String getResourceKey() {
+	public String getResourceKey() {
 		return mKey;
 	}
 	
@@ -169,4 +187,6 @@ public abstract class Resource {
 		
 		return Type.UNKNOWN;
 	}
+	
+	
 }

@@ -10,7 +10,9 @@ public class Main {
 	public static void main(String[] args) {
 		String projectPath = "C:/Projects/Udacity/PopMovies/PopMovies/app/src/main";
 		Resources resources = Resources.newInstance(projectPath);
-		System.out.println("Resource : " + resources.getResources().size());
+		for (Resource resource : resources.getResources()) {
+			System.out.println("Resource: " + resource.getResourceKey());
+		}
 	}
 
 }
