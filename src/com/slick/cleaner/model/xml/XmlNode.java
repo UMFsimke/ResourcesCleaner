@@ -40,6 +40,7 @@ public class XmlNode {
 		case "color":
 		case "string":
 		case "style":
+		case "integer":
 		case "dimen":
 			ResourceXmlNode node = new ResourceXmlNode();
 			node.setResourceKey(((Element) xmlNode).getAttribute("name"));
