@@ -55,6 +55,11 @@ public abstract class Resource {
 		STRING,
 		
 		/**
+		 * Denotes bool resource
+		 */
+		BOOL,
+		
+		/**
 		 * Denotes color resource
 		 */
 		COLOR,
@@ -89,6 +94,9 @@ public abstract class Resource {
 				break;
 			case "dimen":
 				type = DIMEN;
+				break;
+			case "bool":
+				type = BOOL;
 				break;
 			default:
 				type = UNKNOWN;

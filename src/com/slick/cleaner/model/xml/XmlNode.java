@@ -41,6 +41,7 @@ public class XmlNode {
 		case "string":
 		case "style":
 		case "dimen":
+		case "bool":
 			ResourceXmlNode node = new ResourceXmlNode();
 			node.setResourceKey(((Element) xmlNode).getAttribute("name"));
 			node.setNodeName(xmlNode.getNodeName());

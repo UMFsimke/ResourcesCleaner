@@ -73,6 +73,9 @@ public abstract class InlineResource extends Resource {
 			case DIMEN:
 				resource = DimensionResource.newInstance((ResourceXmlNode) node);
 				break;
+			case BOOL:
+				resource = BoolResource.newInstance((ResourceXmlNode) node);
+				break;
 			default:
 				resource = null;
 				break;
