@@ -50,6 +50,11 @@ public abstract class Resource {
 		ANIMATION,
 		
 		/**
+		 * Denotes integer resource
+		 */
+		INTEGER,
+		
+		/**
 		 * Denotes string resource
 		 */
 		STRING,
@@ -91,6 +96,9 @@ public abstract class Resource {
 				break;
 			case "style":
 				type = STYLE;
+				break;
+			case "integer":
+				type = INTEGER;
 				break;
 			case "dimen":
 				type = DIMEN;
